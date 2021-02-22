@@ -50,7 +50,7 @@ function command() {
         default:
             break;
     }
-    var deneme = yargs.argv[0];
+    var deneme = yargs.argv;
 }
 
 module.exports = command;
