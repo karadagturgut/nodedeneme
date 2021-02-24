@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const yargs = require('yargs');
 const getNote = require('./notes');
 const { demandOption } = require('yargs');
+const notes = require('./notes');
 yargs.command({
     command: 'add',
     describe: "Not ekleme komutu",
@@ -20,8 +21,7 @@ yargs.command({
     },
     handler: function(argv) {
         console.log("Not eklendi.")
-        console.log(`Not başlığı: ${argv.title}`)
-        console.log(`Not içeriği: ${argv.body}`)
+        notes.addNotes(argv.title, argv.body)
     }
 });
 yargs.command({
