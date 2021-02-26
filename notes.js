@@ -8,31 +8,25 @@ function getNotes(note) {
 
 function addNotes(title, body) {
     const notes = loadNotes();
-    notes.push({
-        title: title,
-        body: body
-    })
-    saveNotes(notes)
-}
-
-function saveNotes(notes) {
-    const dataJson = JSON.stringify(notes);
     const duplicateNote = notes.filter(function(note) {
         return note.title === title
     })
-    if (duplicateNotes.length === 0) {
+    if (duplicateNote.length === 0) {
         notes.push({
             title: title,
             body: body
         })
+        console.log('New note added');
         saveNotes(notes)
-        console.log('Yeni not eklendi');
     } else {
-        console.log('Not başlığı zaten girilmiş');
+        console.log('That title you have write already taken. ');
     }
+
 }
 
-fs.writeFileSync('notes.json', dataJson);
+function saveNotes(notes) {
+    const dataJson = JSON.stringify(notes);
+    fs.writeFileSync('notes.json', dataJson)
 
 }
 
@@ -46,4 +40,21 @@ function loadNotes() {
     }
 }
 
-module.exports = { getNotes: getNotes, addNotes: addNotes };
+function deleteNote(title) {
+
+    try {
+        const data = loadNotes();
+        const filter = data.filter(function(note) {
+            return note.title !== title
+        })
+        if (condition) {
+
+
+        }
+        saveNotes(filter)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+module.exports = { getNotes: getNotes, addNotes: addNotes, deleteNote: deleteNote };

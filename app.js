@@ -1,48 +1,51 @@
 const fs = require('fs');
-const chalk = require('chalk');
 const yargs = require('yargs');
-const getNote = require('./notes');
-const { demandOption } = require('yargs');
 const notes = require('./notes');
 yargs.command({
     command: 'add',
-    describe: "Not ekleme komutu",
+    describe: "Adds note.",
     builder: {
         title: {
-            describe: "Eklenecek not başlığıdır. String (yazı tipi) olmalıdır.",
+            describe: "That's your note title. It should be string",
             demandOption: true,
             type: 'string'
         },
         body: {
-            describe: "Eklenecek not içeriğidir. String (yazı tipi) olmalıdır.",
+            describe: "That's your note's body. It should be string too.",
             demandOption: true,
             type: "string"
         }
     },
     handler: function(argv) {
-        console.log("Not eklendi.")
         notes.addNotes(argv.title, argv.body)
     }
 });
 yargs.command({
     command: "remove",
-    describe: "Not silme komutu",
-    handler: function() {
-        console.log("Not silindi.")
+    describe: "Removes your note.",
+    builder: {
+        title: {
+            describe: "Title of the note you want to delete.",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function(argv) {
+        notes.deleteNote(argv.title)
     }
 });
 yargs.command({
     command: "list",
-    describe: "Not listeleme komutu",
+    describe: "Lists notes.",
     handler: function() {
-        console.log("Not listelendi.")
+        console.log("Notes listed.")
     }
 });
 yargs.command({
     command: "read",
-    describe: "Not okuma komutu",
+    describe: "Reads notes.",
     handler: function() {
-        console.log("Not okuma.")
+        console.log("ribbit");
     }
 });
 

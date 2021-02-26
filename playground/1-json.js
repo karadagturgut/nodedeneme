@@ -6,18 +6,18 @@ switch (yargs.argv) {
     case "add":
         yargs.command({
             command: "add",
-            describe: "Ekleme Metodu",
+            describe: "Adding Note",
             fileName: {
-                describe: "dosya adı parametresi",
+                describe: "file name parameter",
                 demandOption: true,
                 type: string
             },
             ad: {
-                describe: "isim parametresi",
+                describe: "name parameter",
                 type: string
             },
             age: {
-                describe: "yaş parametresi",
+                describe: "age parameter",
                 type: string
             },
             place: {
@@ -33,7 +33,7 @@ switch (yargs.argv) {
 try {
     const file = { name: yargs.argv.ad, age: yargs.argv.age, from: yargs.argv.place }
     fs.writeFileSync(`${yargs.argv.fileName}.json`, JSON.stringify(file));
-    console.log("dosya oluşturuldu.");
+    console.log("file created.");
 } catch (error) {
     console.log(error)
 }
